@@ -5,7 +5,7 @@ function DeveloperDetails({ setCurrentPage }) {
     <main className="developer-details">
       <h2>Developer Details</h2>
       <div className="card">
-        <img src="./user.jpg" alt="Abdulkadir Adamu Haji" className="developer-image" />
+        <img src="./USER.jpg" alt="Abdulkadir Adamu Haji" className="developer-image" />
         <h3>About the Developer</h3>
         <p>This inventory management system was developed by Abdulkadir Adamu Haji.</p>
         <p>Technologies used:</p>

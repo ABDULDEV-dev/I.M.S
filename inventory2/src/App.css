@@ -82,7 +82,8 @@ button:hover {
 
 /* Form Styles */
 .product-form form,
-.auth-form form {
+.auth-form form,
+.debt-form form {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -92,13 +93,15 @@ button:hover {
 }
 
 .product-form label,
-.auth-form label {
+.auth-form label,
+.debt-form label {
   font-weight: bold;
 }
 
 .product-form input,
 .product-form select,
-.auth-form input {
+.auth-form input,
+.debt-form input {
   width: 100%;
   padding: 8px;
   border: 1px solid #ddd;
@@ -188,16 +191,23 @@ th {
   background-color: #ff8c00;
 }
 
+.top-back-button {
+  margin: 0 0 20px 0;
+  align-self: flex-start;
+}
+
 /* Adjust layout for components with Back to Home button */
 .product-form,
 .view-inventory,
 .manage-inventory,
 .developer-details,
 .auth-form,
-.user-details {
+.user-details,
+.debt-book,
+.sales-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 100%;
 }
 
 /* View Inventory Styles */
@@ -205,6 +215,7 @@ th {
   margin-top: 20px;
   font-size: 1.125rem;
   text-align: right;
+  color: green;
 }
 
 /* User Details Styles */
@@ -350,6 +361,623 @@ th {
   .developer-image {
     width: 120px;
     height: 120px;
+  }
+}
+
+/* Sales Form Styles */
+.sales-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sales-form h2 {
+  text-align: center;
+  color: #ff8c00;
+}
+
+.sales-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sales-form label {
+  font-weight: bold;
+}
+
+.sales-form input,
+.sales-form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* Receipt Printing Styles */
+.receipt-printing {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.receipt-printing h2 {
+  text-align: center;
+  color: #ff8c00;
+}
+
+.receipt-content {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.receipt-content p {
+  margin: 10px 0;
+}
+
+@media print {
+  .receipt-printing button,
+  .back-home {
+    display: none;
+  }
+}
+
+/* Debt Book Styles */
+.debt-book {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.debt-book h2 {
+  text-align: center;
+  color: #ff8c00;
+}
+
+.debt-form {
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.debt-form h3 {
+  color: #ff8c00;
+  margin-bottom: 15px;
+}
+
+.debt-list {
+  width: 100%;
+}
+
+.debt-list h3 {
+  color: #ff8c00;
+  margin-bottom: 15px;
+}
+
+.paid-debt {
+  background-color: #e8f5e9;
+}
+
+/* Search Styles */
+.search-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  max-width: 400px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  width: 18px;
+  height: 18px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* Sales Page Styles */
+.sales-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.sales-page h2 {
+  text-align: center;
+  color: #ff8c00;
+}
+
+.sales-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.action-button {
+  background-color: #ff8c00;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.action-button:hover {
+  background-color: #ffa500;
+}
+
+.sales-history {
+  margin-top: 30px;
+}
+
+.sales-history h3 {
+  color: #ff8c00;
+  margin-bottom: 15px;
+}
+
+.payment-status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.payment-status.paid {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.payment-status.debt {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.debt-row {
+  background-color: #fff8e1;
+}
+
+.debt-book .action-button,
+.sales-page .action-button {
+  margin-bottom: 20px;
+}
+
+.debt-form,
+.sales-form {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 4px;
+  margin-bottom: 30px;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.top-back-button {
+  margin: 0 0 20px 0;
+  align-self: flex-start;
+  margin-bottom: 2rem;
+}
+
+/* Add these responsive styles to your existing CSS */
+
+/* General Responsive Adjustments */
+@media (max-width: 768px) {
+  .app {
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  /* Table Responsiveness */
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+
+  table {
+    min-width: 650px;
+  }
+
+  td,
+  th {
+    white-space: nowrap;
+    padding: 8px;
+  }
+
+  /* Form Responsiveness */
+  .product-form,
+  .auth-form,
+  .debt-form,
+  .sales-form {
+    padding: 15px;
+    width: 100%;
+  }
+
+  .product-form form,
+  .auth-form form,
+  .debt-form form,
+  .sales-form form {
+    width: 100%;
+  }
+
+  /* Button Adjustments */
+  .sales-actions,
+  .debt-book .action-button {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .action-button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  /* Search Input Adjustments */
+  .search-container {
+    width: 100%;
+  }
+
+  .search-input-wrapper {
+    max-width: 100%;
+  }
+
+  /* Grid Adjustments */
+  .home-page .grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .home-page button {
+    height: 80px;
+  }
+}
+
+/* Small Screen Adjustments */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .top-back-button {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .header {
+    padding: 10px;
+  }
+
+  .header h1 {
+    font-size: 1.25rem;
+  }
+
+  /* Form Elements */
+  input,
+  select,
+  button {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  /* Table Further Adjustments */
+  td,
+  th {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  /* Image Adjustments */
+  .product-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .user-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .developer-image {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* Receipt Adjustments */
+  .receipt-content {
+    padding: 10px;
+  }
+
+  /* Status Indicators */
+  .payment-status {
+    padding: 2px 4px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Add wrapper for tables */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1rem;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Print Styles */
+@media print {
+  .top-back-button,
+  .action-button,
+  .search-container {
+    display: none;
+  }
+
+  .table-wrapper {
+    box-shadow: none;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border: 1px solid #ddd;
+  }
+}
+
+/* Add these styles to your existing CSS */
+
+.inventory-actions {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.quick-add-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  height: 40px;
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.quick-add-button:hover {
+  background-color: #16a34a;
+}
+
+.quick-add-button .icon {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 768px) {
+  .inventory-actions {
+    flex-direction: column;
+  }
+
+  .quick-add-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .search-container {
+    width: 100%;
+  }
+}
+
+/* Add these icon-related styles to your existing CSS */
+
+.button-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.button-icon-small {
+  width: 16px;
+  height: 16px;
+}
+
+.table-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.form-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  vertical-align: middle;
+  opacity: 0.7;
+}
+
+.status-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.status-icon.paid {
+  color: #22c55e;
+}
+
+.status-icon.pending {
+  color: #ef4444;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.status-badge.paid {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.status-badge.pending {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.icon-button.success {
+  background-color: #22c55e;
+  color: white;
+}
+
+.icon-button.success:hover {
+  background-color: #16a34a;
+}
+
+.icon-button.decrease {
+  background-color: #ef4444;
+  color: white;
+}
+
+.icon-button.decrease:hover {
+  background-color: #dc2626;
+}
+
+.icon-button.increase {
+  background-color: #22c55e;
+  color: white;
+}
+
+.icon-button.increase:hover {
+  background-color: #16a34a;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+/* Home page button icons */
+.home-page .grid button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  height: 120px;
+}
+
+.home-page .grid button .button-icon {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .button-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .home-page .grid button {
+    height: 100px;
+  }
+
+  .home-page .grid button .button-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .button-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .home-page .grid button {
+    height: 80px;
+  }
+
+  .home-page .grid button .button-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .icon-button {
+    padding: 4px 8px;
+    font-size: 0.75rem;
   }
 }
 
