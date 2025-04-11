@@ -13,6 +13,7 @@ import UserDetails from "./components/UserDetails"
 import SalesForm from "./components/Salesform"
 import ReceiptPrinting from "./components/ReceiptPrinting"
 import DebtBook from "./components/DebtBook"
+import ReceiptHistory from "./components/ReceiptHistory"
 import "./App.css"
 
 function App() {
@@ -63,8 +64,12 @@ function App() {
   }
 
   const addSale = (sale) => {
-    setCurrentSale(sale)
-    setSales([...sales, sale])
+    const newSale = {
+      ...sale,
+      id: Date.now(),
+    }
+    setCurrentSale(newSale)
+    setSales([...sales, newSale])
 
     // If sale is on debt, add to debt book
     if (sale.paymentType === "debt") {
@@ -77,6 +82,7 @@ function App() {
         dueDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0], // 30 days from now
         description: `Purchase of ${sale.quantity} ${sale.productName}`,
         status: "pending",
+        saleId: newSale.id, // Link to the sale
       }
       setDebts([...debts, debtRecord])
     }
@@ -99,45 +105,67 @@ function App() {
     setDebts(debts.map((debt) => (debt.id === id ? { ...debt, status } : debt)))
   }
 
+  const updateSalePaymentStatus = (saleId, paymentType) => {
+    setSales(sales.map((sale) => (sale.id === saleId ? { ...sale, paymentType } : sale)))
+  }
+
+  const handlePageChange = (page) => {
+    // If navigating away from receipt printing, clear the current sale
+    if (currentPage === "receipt-printing" && page !== "receipt-printing") {
+      setCurrentSale(null)
+    }
+    setCurrentPage(page)
+  }
+
+  const handleSetCurrentSale = (sale) => {
+    console.log("Setting current sale:", sale)
+    setCurrentSale(sale)
+  }
+
   const renderPage = () => {
     switch (currentPage) {
       case "home":
-        return <HomePage setCurrentPage={setCurrentPage} />
+        return <HomePage setCurrentPage={handlePageChange} />
       case "add-product":
-        return <ProductForm addProduct={addProduct} setCurrentPage={setCurrentPage} />
+        return <ProductForm addProduct={addProduct} setCurrentPage={handlePageChange} />
       case "view-inventory":
-        return <ViewInventory inventory={inventory} setCurrentPage={setCurrentPage} />
+        return <ViewInventory inventory={inventory} setCurrentPage={handlePageChange} />
       case "manage-inventory":
-        return <ManageInventory inventory={inventory} updateQuantity={updateQuantity} setCurrentPage={setCurrentPage} />
+        return (
+          <ManageInventory inventory={inventory} updateQuantity={updateQuantity} setCurrentPage={handlePageChange} />
+        )
       case "developer-details":
-        return <DeveloperDetails setCurrentPage={setCurrentPage} />
+        return <DeveloperDetails setCurrentPage={handlePageChange} />
       case "login":
-        return <LoginForm setCurrentPage={setCurrentPage} />
+        return <LoginForm setCurrentPage={handlePageChange} />
       case "signup":
-        return <SignupForm setCurrentPage={setCurrentPage} />
+        return <SignupForm setCurrentPage={handlePageChange} />
       case "user-details":
-        return <UserDetails setCurrentPage={setCurrentPage} companyInfo={companyInfo} />
+        return <UserDetails setCurrentPage={handlePageChange} companyInfo={companyInfo} />
       case "sales":
-        return <SalesForm inventory={inventory} addSale={addSale} sales={sales} setCurrentPage={setCurrentPage} />
+        return <SalesForm inventory={inventory} addSale={addSale} sales={sales} setCurrentPage={handlePageChange} />
       case "receipt-printing":
-        return <ReceiptPrinting currentSale={currentSale} setCurrentPage={setCurrentPage} />
+        return <ReceiptPrinting currentSale={currentSale} setCurrentPage={handlePageChange} />
+      case "receipt-history":
+        return <ReceiptHistory sales={sales} setCurrentPage={handlePageChange} setCurrentSale={handleSetCurrentSale} />
       case "debt-book":
         return (
           <DebtBook
             debts={debts}
             addDebt={addDebt}
             updateDebtStatus={updateDebtStatus}
-            setCurrentPage={setCurrentPage}
+            setCurrentPage={handlePageChange}
+            updateSalePaymentStatus={updateSalePaymentStatus}
           />
         )
       default:
-        return <HomePage setCurrentPage={setCurrentPage} />
+        return <HomePage setCurrentPage={handlePageChange} />
     }
   }
 
   return (
     <div className="app">
-      <Header setCurrentPage={setCurrentPage} companyInfo={companyInfo} />
+      <Header setCurrentPage={handlePageChange} companyInfo={companyInfo} />
       {renderPage()}
     </div>
   )

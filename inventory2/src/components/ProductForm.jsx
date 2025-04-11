@@ -7,6 +7,7 @@ function ProductForm({ addProduct, setCurrentPage }) {
   const [product, setProduct] = useState({
     name: "",
     price: "",
+    buyingPrice: "",
     category: "",
     quantity: "",
     image: "",
@@ -21,7 +22,7 @@ function ProductForm({ addProduct, setCurrentPage }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    if (name === "price" || name === "quantity") {
+    if (name === "price" || name === "quantity" || name === "buyingPrice") {
       // Remove commas and convert to number
       const numValue = Number(value.replace(/,/g, ""))
       setProduct((prev) => ({
@@ -52,7 +53,7 @@ function ProductForm({ addProduct, setCurrentPage }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     addProduct(product)
-    setProduct({ name: "", price: "", category: "", quantity: "", image: "" })
+    setProduct({ name: "", price: "", buyingPrice: "", category: "", quantity: "", image: "" })
     setCurrentPage("view-inventory")
   }
 
@@ -62,23 +63,40 @@ function ProductForm({ addProduct, setCurrentPage }) {
 
   return (
     <main className="product-form">
+      <BackToHomeButtom setCurrentPage={setCurrentPage} />
       <h2>Add New Product</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Product Name</label>
           <input id="name" name="name" value={product.name} onChange={handleChange} required />
         </div>
-        <div>
-          <label htmlFor="price">Price</label>
-          <input
-            id="price"
-            name="price"
-            type="text"
-            value={product.price ? formatNumber(product.price) : ""}
-            onChange={handleChange}
-            required
-          />
+
+        <div className="price-fields">
+          <div className="price-field">
+            <label htmlFor="buyingPrice">Buying Price (₦)</label>
+            <input
+              id="buyingPrice"
+              name="buyingPrice"
+              type="text"
+              value={product.buyingPrice ? formatNumber(product.buyingPrice) : ""}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="price-field">
+            <label htmlFor="price">Selling Price (₦)</label>
+            <input
+              id="price"
+              name="price"
+              type="text"
+              value={product.price ? formatNumber(product.price) : ""}
+              onChange={handleChange}
+              required
+            />
+          </div>
         </div>
+
         <div>
           <label htmlFor="category">Category</label>
           <select id="category" name="category" value={product.category} onChange={handleChange} required>
@@ -125,7 +143,6 @@ function ProductForm({ addProduct, setCurrentPage }) {
         </div>
         <button type="submit">Add Product</button>
       </form>
-      <BackToHomeButtom setCurrentPage={setCurrentPage} />
     </main>
   )
 }

@@ -168,6 +168,7 @@ function SalesForm({ inventory, addSale, sales, setCurrentPage }) {
                     <td>
                       <span className={`payment-status ${sale.paymentType}`}>
                         {sale.paymentType === "paid" ? "Paid" : "Debt"}
+                      
                       </span>
                     </td>
                   </tr>

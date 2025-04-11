@@ -1,4 +1,6 @@
-import { PlusCircle, ClipboardList, Settings, ShoppingCart, BookOpen, UserCircle } from "lucide-react"
+"use client"
+
+import { PlusCircle, ClipboardList, Settings, ShoppingCart, BookOpen, UserCircle, Printer } from "lucide-react"
 
 function HomePage({ setCurrentPage }) {
   return (
@@ -23,6 +25,10 @@ function HomePage({ setCurrentPage }) {
         <button onClick={() => setCurrentPage("debt-book")}>
           <BookOpen className="button-icon" />
           Debt Book
+        </button>
+        <button onClick={() => setCurrentPage("receipt-history")}>
+          <Printer className="button-icon" />
+          Print Receipts
         </button>
         <button onClick={() => setCurrentPage("developer-details")}>
           <UserCircle className="button-icon" />
